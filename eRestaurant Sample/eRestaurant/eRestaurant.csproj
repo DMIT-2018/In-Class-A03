@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\RestaurantContext.cs" />
+    <Compile Include="Entities\Reservation.cs" />
+    <Compile Include="Entities\SpecialEvent.cs" />
+    <Compile Include="Entities\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
