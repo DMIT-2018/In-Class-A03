@@ -132,8 +132,60 @@ namespace eRestaurant.BLL
 
         #region Manage Items
         #region Command
+        [DataObjectMethod(DataObjectMethodType.Insert, false)]
+        public int AddWaiter(Waiter item)
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                // TODO: Validation of waiter data....
+                var added = context.Waiters.Add(item);
+                context.SaveChanges();
+                return added.WaiterID;
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public void UpdateWaiter(Waiter item)
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                // TODO: Validation
+                var attached = context.Waiters.Attach(item);
+                var matchingWithExistingValues = context.Entry<Waiter>(attached);
+                matchingWithExistingValues.State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void DeleteWaiter(Waiter item)
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                var existing = context.Waiters.Find(item.WaiterID);
+                context.Waiters.Remove(existing);
+                context.SaveChanges();
+            }
+        }
         #endregion
         #region Query
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Waiter> ListAllWaiters()
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                return context.Waiters.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public Waiter GetWaiter(int waiterId)
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                return context.Waiters.Find(waiterId);
+            }
+        }
         #endregion
         #endregion
 
