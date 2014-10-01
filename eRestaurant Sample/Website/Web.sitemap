@@ -2,6 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode title="eRestaurant"  description="eRestaurant">
     <siteMapNode url="~/Default.aspx" title="Home"  description="eRestaurant - Simple-Tasty-Elegant" />
+    <siteMapNode url="~/MenuItems.aspx" title="Our Menu" description="eRestaurant Menu Items" />
     <siteMapNode url="~/Reservations.aspx" title="Reservations"  description="Reservations" />
     <siteMapNode title="Staff"  description="Front Desk, Waiters, and Kitchen Staff" >
       <siteMapNode url="~/Staff/KitchenOrders.aspx" title="Kitchen Orders" description="Kitchen Ordering Queue" />
