@@ -246,5 +246,19 @@ namespace eRestaurant.BLL
         }
         #endregion
         #endregion
+
+        #region Ad-hoc
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Reservation> LookupReservationsBySpecialEvent(string eventCode)
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                var data = from info in context.Reservations
+                           where info.EventCode == eventCode
+                           select info;
+                return data.ToList();
+            }
+        }
+        #endregion
     }
 }
