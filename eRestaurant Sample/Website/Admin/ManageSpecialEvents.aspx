@@ -7,7 +7,7 @@
 
     <asp:ListView ID="ListView1" runat="server" DataSourceID="SpecialEventsDataSource" InsertItemPosition="LastItem">
         <EditItemTemplate>
-            <span style="">
+            <div>
                 <asp:LinkButton runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
                 &nbsp;&nbsp;
                 <asp:LinkButton runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
@@ -19,13 +19,13 @@
                 &mdash;
                 <asp:Label ID="Label6" runat="server" AssociatedControlID="DescriptionTextBox" CssClass="control-label">Description</asp:Label>
                 <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBox" />
-            </span>
+            </div>
         </EditItemTemplate>
         <EmptyDataTemplate>
             <span>No data was returned.</span>
         </EmptyDataTemplate>
         <InsertItemTemplate>
-            <span style="">
+            <div>
                 <asp:LinkButton runat="server" CommandName="Insert" ID="InsertButton">Insert <span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                 &nbsp;&nbsp;
                 <asp:LinkButton runat="server" CommandName="Cancel" ID="CancelButton">Clear <span class="glyphicon glyphicon-refresh"></span></asp:LinkButton>
@@ -37,7 +37,7 @@
                 &mdash;
                 <asp:Label ID="Label4" runat="server" AssociatedControlID="DescriptionTextBox"  CssClass="control-label">Description</asp:Label>
                 <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBox" />
-            </span>
+            </div>
         </InsertItemTemplate>
         <ItemTemplate>
             <div>
