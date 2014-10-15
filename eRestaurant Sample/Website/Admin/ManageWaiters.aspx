@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="ManageWaiters.aspx.cs" Inherits="Admin_ManageWaiters" %>
 
+<%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="my" TagName="MessageUserControl" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <script src='<%=ResolveUrl("/Scripts/unobtrusive-DMIT-2018.js") %>'></script>
     <div class="row col-md-12">
@@ -33,18 +36,19 @@
             <asp:TextBox ID="Address" runat="server"></asp:TextBox>
 
             <asp:Label ID="Label7" runat="server" Text="Hire Date" AssociatedControlID="HireDate" />
-            <asp:TextBox ID="HireDate" runat="server"></asp:TextBox>
+            <asp:TextBox ID="HireDate" runat="server" TextMode="Date"></asp:TextBox>
 
             <asp:Label ID="Label8" runat="server" Text="Release Date" AssociatedControlID="ReleaseDate" />
-            <asp:TextBox ID="ReleaseDate" runat="server"></asp:TextBox>
+            <asp:TextBox ID="ReleaseDate" runat="server" TextMode="Date"></asp:TextBox>
         </fieldset>
 
         <fieldset data-style="btn">
-            <asp:LinkButton ID="Add" runat="server" Text="Add Waiter" />
-            <asp:LinkButton ID="Update" runat="server" Text="Update Waiter" />
+            <asp:LinkButton ID="Add" runat="server" Text="Add Waiter" OnClick="Add_Click" />
+            <asp:LinkButton ID="Update" runat="server" Text="Update Waiter" OnClick="Update_Click" />
             <asp:LinkButton ID="Delete" runat="server" Text="Delete Waiter" />
             <asp:LinkButton ID="Clear" runat="server" Text="Clear Fields" />
         </fieldset>
+        <my:MessageUserControl runat="server" ID="MessageUserControl" />
     </div>
 
 </asp:Content>
