@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AdHocController.cs" />
     <Compile Include="BLL\MenuController.cs" />
     <Compile Include="BLL\ReportsController.cs" />
     <Compile Include="BLL\RestaurantAdminController.cs" />
