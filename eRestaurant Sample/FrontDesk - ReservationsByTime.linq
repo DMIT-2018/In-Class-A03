@@ -37,3 +37,9 @@ public List<dynamic> ReservationsByTime(DateTime date)
 					  group item by item.Date.TimeOfDay;
 	return finalResult.ToList<dynamic>();
 }
+
+
+
+
+
+
