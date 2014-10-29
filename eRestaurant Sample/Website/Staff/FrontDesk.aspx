@@ -4,6 +4,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
+    <style type="text/css">
+        .seating {
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
     <div class="row col-md-12">
         <h1>Front Desk</h1>
 
@@ -36,6 +42,51 @@
         </div>
 
         <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+
+        <div class="pull-right col-md-5">
+            <details open>
+                <summary>Reservations by Date/Time</summary>
+                <h4>Today's Reservations</h4>
+                <asp:Repeater ID="ReservationsRepeater" runat="server"
+                    ItemType="eRestaurant.Entities.DTOs.ReservationCollection" DataSourceID="ReservationsDataSource">
+                    <ItemTemplate>
+                        <div>
+                            <h4><%# Item.Time %></h4>
+                            <asp:ListView ID="ReservationSummaryListView" runat="server"
+                                 ItemType="eRestaurant.Entities.DTOs.ReservationSummary"
+                                 DataSource="<%# Item.Reservations %>">
+                                <LayoutTemplate>
+                                    <div class="seating">
+                                        <span runat="server" id="itemPlaceholder" />
+                                    </div>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <div>
+                                        <%# Item.Name %> &mdash;
+                                        <%# Item.NumberInParty %> &mdash;
+                                        <%# Item.Status %> &mdash;
+                                        PH:
+                                        <%# Item.Contact %>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <asp:ObjectDataSource runat="server" ID="ReservationsDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ReservationsByTime" TypeName="eRestaurant.BLL.SeatingController">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="SearchDate" PropertyName="Text" Name="date" Type="DateTime"></asp:ControlParameter>
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+            </details>
+        </div>
+
+        <div class="col-md-7">
+            <details open>
+                <summary>Tables</summary>
+            </details>
+        </div>
+
     </div>
 </asp:Content>
 

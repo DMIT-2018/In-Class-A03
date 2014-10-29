@@ -16,6 +16,7 @@ public partial class Staff_FrontDesk : System.Web.UI.Page
     {
         MessageUserControl.TryRun(SetMockedTimeToLastBill);
     }
+
     private void SetMockedTimeToLastBill()
     {
         var controller = new AdHocController();
