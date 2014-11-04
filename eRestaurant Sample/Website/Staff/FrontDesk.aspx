@@ -51,7 +51,7 @@
                     ItemType="eRestaurant.Entities.DTOs.ReservationCollection" DataSourceID="ReservationsDataSource">
                     <ItemTemplate>
                         <div>
-                            <h4><%# Item.Time %></h4>
+                            <h4><%# Item.SeatingTime %></h4>
                             <asp:ListView ID="ReservationSummaryListView" runat="server"
                                  ItemType="eRestaurant.Entities.DTOs.ReservationSummary"
                                  DataSource="<%# Item.Reservations %>">
@@ -84,6 +84,24 @@
         <div class="col-md-7">
             <details open>
                 <summary>Tables</summary>
+                <asp:GridView ID="SeatingGridView" runat="server"
+                    ItemType="eRestaurant.Entities.DTOs.SeatingSummary" AutoGenerateColumns="False" DataSourceID="SeatingDataSource">
+                    <Columns>
+                        <asp:BoundField DataField="Table" HeaderText="Table" SortExpression="Table"></asp:BoundField>
+                        <asp:BoundField DataField="Seating" HeaderText="Seating" SortExpression="Seating"></asp:BoundField>
+                        <asp:CheckBoxField DataField="Taken" HeaderText="Taken" SortExpression="Taken"></asp:CheckBoxField>
+                        <asp:BoundField DataField="BillID" HeaderText="BillID" SortExpression="BillID"></asp:BoundField>
+                        <asp:BoundField DataField="BillTotal" HeaderText="BillTotal" SortExpression="BillTotal"></asp:BoundField>
+                        <asp:BoundField DataField="Waiter" HeaderText="Waiter" SortExpression="Waiter"></asp:BoundField>
+                        <asp:BoundField DataField="ReservationName" HeaderText="ReservationName" SortExpression="ReservationName"></asp:BoundField>
+                    </Columns>
+                </asp:GridView>
+                <asp:ObjectDataSource runat="server" ID="SeatingDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="SeatingByDateTime" TypeName="eRestaurant.BLL.SeatingController">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="SearchDate" PropertyName="Text" Name="date" Type="DateTime"></asp:ControlParameter>
+                        <asp:ControlParameter ControlID="SearchTime" PropertyName="Text" DbType="Time" Name="time"></asp:ControlParameter>
+                    </SelectParameters>
+                </asp:ObjectDataSource>
             </details>
         </div>
 
