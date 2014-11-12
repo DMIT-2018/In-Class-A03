@@ -12,6 +12,7 @@ public partial class Staff_FrontDesk : System.Web.UI.Page
     {
 
     }
+
     protected void MockLastBillingDateTime_Click(object sender, EventArgs e)
     {
         MessageUserControl.TryRun(SetMockedTimeToLastBill);
@@ -47,5 +48,36 @@ public partial class Staff_FrontDesk : System.Web.UI.Page
             // Refresh the gridview
             SeatingGridView.DataBind();
         }, "Customer Seated", "New walk-in customer has been seated");
+    }
+
+    protected void ReservationSummaryListView_OnItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        // Check the command name and add the reservation for the specified seats.
+        if (e.CommandName.Equals("Seat"))
+        {
+            MessageUserControl.TryRun(() =>
+            {
+                // Get the data
+                var reservationId = int.Parse(e.CommandArgument.ToString());
+                var selectedItems = new List<byte>();
+                foreach (ListItem item in ReservationTableListBox.Items)
+                {
+                    if (item.Selected)
+                        selectedItems.Add(byte.Parse(item.Text.Replace("Table ", "")));
+                }
+                var when = DateTime.Parse(SearchDate.Text).Add(TimeSpan.Parse(SearchTime.Text));
+                // Seat the reservation customer
+                var controller = new SeatingController();
+                controller.SeatCustomer(when, reservationId, selectedItems, int.Parse(WaiterDropDownList.SelectedValue));
+                // Refresh the gridview
+                SeatingGridView.DataBind();
+            }, "Customer Seated", "Reservation customer has arrived and has been seated");
+        }
+    }
+
+    protected bool ShowReservationSeating()
+    {
+        // TODO: Get the reservations for the day and return true if there are reservations, false otherwise
+        return false;
     }
 }
