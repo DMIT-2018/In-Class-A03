@@ -10,7 +10,7 @@
 
     <div class="row col-md-4">
         <asp:Label ID="MessageLabel" runat="server" />
-        <asp:LinkButton ID="AddRoles" runat="server" OnClick="AddRoles_Click" />
+        <asp:LinkButton ID="AddRoles" runat="server" OnClick="AddRoles_Click" Text="Add to roles"/>
     </div>
 
     <div class="row">

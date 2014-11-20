@@ -14,7 +14,10 @@ public partial class _Default : Page
         if(Request.IsAuthenticated)
         {
             string msg = "Hello " + User.Identity.Name + "!";
-            if (User.IsInRole(STR_REGISTERED_USERS))
+            UserManager m2 = new UserManager();
+        var person = m2.FindByName(User.Identity.Name);
+            if(m2.IsInRole(person.Id, STR_REGISTERED_USERS))
+            //if (User.IsInRole(STR_REGISTERED_USERS))
             {
                 msg += " I see you are in the role " + STR_REGISTERED_USERS;
                 AddRoles.Visible = false;
