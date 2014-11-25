@@ -157,6 +157,14 @@ namespace eRestaurant.BLL
             }
         }
 
+        public void BulkMenuUpdate(List<Item> items)
+        {
+            using (var context = new RestaurantContext())
+            {
+                // TODO: Update all the data....
+            }
+        }
+
         [DataObjectMethod(DataObjectMethodType.Delete, false)]
         public void DeleteItem(Item item)
         {
@@ -169,6 +177,12 @@ namespace eRestaurant.BLL
         }
         #endregion
         #region Query
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Item> ListAllItemsAlphabetical()
+        {
+            return ListAllItems().OrderBy(x => x.Description).ToList();
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Item> ListAllItems()
         {
