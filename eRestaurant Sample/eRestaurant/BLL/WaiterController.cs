@@ -19,6 +19,7 @@ namespace eRestaurant.BLL
             {
                 var result = from data in context.Bills
                              where !data.PaidStatus
+                                && data.Items.Count() > 0
                              select new ListDataItem()
                              {
                                  DisplayText = data.BillID.ToString() + " (Table " + data.Table.TableNumber.ToString() + ")",
