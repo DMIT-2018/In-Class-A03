@@ -135,7 +135,7 @@ public partial class Staff_SplitBill : System.Web.UI.Page
                 Price = decimal.Parse(priceLabel.Text)
             };
 
-            result.Add(data);
+            newItems.Add(data);
         }
 
         int billId = int.Parse(BillToSplit.Value);
