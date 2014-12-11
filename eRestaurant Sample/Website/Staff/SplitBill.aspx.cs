@@ -128,11 +128,23 @@ public partial class Staff_SplitBill : System.Web.UI.Page
             var qtyLabel = row.FindControl("Quantity") as Label;
             var nameLabel = row.FindControl("ItemName") as Label;
             var priceLabel = row.FindControl("Price") as Label;
+
+            int qty;
+            decimal price;
+
+            // a place to put an if, should I need to get from a different control.
+            if (qtyLabel != null)
+                qty = int.Parse(qtyLabel.Text);
+            else
+                qty = 0; // or from another control
+
+            price = decimal.Parse(priceLabel.Text);
+
             var data = new OrderItem()
             {
-                Quantity = int.Parse(qtyLabel.Text),
+                Quantity = qty,
                 ItemName = nameLabel.Text,
-                Price = decimal.Parse(priceLabel.Text)
+                Price = price
             };
 
             newItems.Add(data);
